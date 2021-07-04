@@ -1,7 +1,10 @@
 # Table of Contents
 - Markdown Syntax
+- Git Config
 - Git Branches (Local)
+- Git Repositories (Local)
 - Git Branches (Remote)
+- Git Repositories (Remote)
 - To Be Continued..
 <br>
 <hr>
@@ -19,7 +22,26 @@
 
 <br>
 
-## Git Branches (Local Repository Management)
+## Git Config
+
+1. Define the author name to be used for all commits in the current repository:
+  * git config user.name "[Name]"
+    - NOTE: Use the **--system** flag to specify the author name to be used in all repositories for all users of the system.
+    - NOTE: Use the **--global** flag to specify the author name to be used in all repositories for the logged in user.
+    - NOTE: Use the **--local** flag (this is the default behavior) to specify the author name to be used in the current repository.
+      - EXAMPLE:  git config --system user.name "[Name]"
+      - EXAMPLE:  git config --global user.name "[Name]"
+      - EXAMPLE:  git config --local user.name "[Name]"
+    - NOTE: **--system** will supply a git config file in all users' home dirs in which all users' repos will inherit from (*unless a repo has been configured with a **--local user.name** or **--global user.name** command.*).
+    - NOTE: **--global** will supply a git config file in the home dir for the logged in user in which all repos will inherit from (*unless a repo has been configured with a **--local** user.name command.*).
+
+<br>
+
+2. TBC...
+
+<br>
+
+## Git Branches (Local Branch Management)
 
 1. To list branches in the local repository:
   * git branch
@@ -75,7 +97,7 @@
 9. To submit tracked changes as commits, meaning to save the file in it's current state as a period in time(i.e. version controle):
   * git add [target1_filename] [target2_filename]
     - NOTE: Always ensure the latest changes are staged before commiting. (Unless you only wish to commit the changes as they were in your last 'git add' command)
-  * git commit -m "[notes/details_IRT_commit]"
+  * git commit -m "[notes_or_details_IRT_commit]"
     - NOTE: Guidelines is to be short yet specific, and keep char-length of message below 70 chars.
 
 <br>
@@ -98,7 +120,25 @@
 
 <br>
 
-## Git Branches (Remote Repository Management)
+## Git Repositories (Local Repository Management)
+
+1. To create an empty Git repository:
+ * git init
+   - NOTE: This initializes the CWD as a Git repo.
+ * git init [directory]
+   - NOTE: This initializes a specified directory, residing in the CWD, as a Git repo.
+   - NOTE: Use this for creating a project named [directory] so Git doesn't recursively track the project [directory] since you may want to create other projects in your CWD.
+   - EXAMPLE:
+     - if CWD = ~/GitHub_Projects
+     - if the desired Project folder with Git version control is:  Automating_With_Nornir
+     - then the Command to execute is:  git init Automating_With_Nornir
+     - cd Automating_With_Nornir
+     - ls -la ---> contains the .git directory
+2. TBC...
+
+<br>
+
+## Git Branches (Remote Branch Management)
 
 1. To list branches in a remote repository:
   * git branch -r
@@ -122,3 +162,31 @@
 <br>
 
 4. TBC...
+
+<br>
+
+## Git Repositories (Remote Repository Management)
+
+1. To create an empty Git repository:
+  * **STEP-1:**  git init
+    - NOTE: See '(Local Repository Management)' above for details.
+  * **STEP-1 ALT:**  git init [directory]
+  * **STEP-2:**  git add .
+    - NOTE: Stages the CWD for tracking.
+    - NOTE: This may require at least one file to exist for tracking. If so, you can perform the below to satisfy the requirement:
+      * touch README.md
+      * git add README.md
+  * **STEP-2 ALT:**  cd [directory]  *THEN*  git add .
+    - NOTE: Stages the CWD for tracking.
+    - NOTE: This may require at least one file to exist for tracking. If so, you can perform the below to satisfy the requirement:
+      * touch README.md
+      * git add README.md
+  * **STEP-3:** git commit -m "[notes_or_details_IRT_commit]"
+    - NOTE: Guidelines is to be short yet specific, and keep char-length of message below 70 chars.
+  * **STEP-4:**  git push [remote_shorthand]
+  * **STEP-5 (*optional*):**  git push [remote_shorthand] --all
+    - NOTE: After STEP-4, if you create additional branches such as *Development* and *Testing*, and have commited their contents to your local repo, this pushes **all** of the branches that exist in your local repo to the remote repo.
+
+<br>
+
+2. TBC...
