@@ -142,7 +142,7 @@
   * `git add [target1_filename] [target2_filename]`
     - NOTE: Always ensure the latest changes are staged before performing a commit. (Unless you do not wish to commit any changes to a file since it was last staged/added)
   * `git commit -m "[notes_or_details_IRT_commit]"`
-    - NOTE: Guidelines is to be short yet specific, and keep char-length of message below 70 chars.
+    - NOTE: A ProTip is to be short yet specific, and keep the char-length of the message summary fewer than 50 chars.
 
 <br>
 
