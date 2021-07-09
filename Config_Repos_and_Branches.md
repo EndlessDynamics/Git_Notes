@@ -202,19 +202,47 @@
 
 <br>
 
-2. To add an existing branch from your local repo, to a remote repo:
+2. To push an existing Git repository:
+  - NOTE: This is useful if you have already started on a project on your local workstation and are wanting to add it to GitHub/GitLab where it has never existed before.
+  * `cd  [/full/path/to/existing_repo]`
+  * `git remote rename [remote_shorthand] [old_remote_shorthand]`
+  * `git remote add [remote_shorthand] [remote_https_URL/project.git]`
+    - NOTE: Associate the new remote repository to your preferred [remote_shorthand]
+  * `git push -u [remote_shorthand] --all`
+    - NOTE: Push everything to your [remote_shorthand]
+  * `git push -u [remote_shorthand] --tags`
+    - NOTE: This ensures all tags get migrated(copied) as well.
+
+<br>
+
+3. To push an existing folder (that does NOT contain a Git repository yet) to a remote repo in which the Project has NOT been created yet:
+  * `cd  [/full/path/to/existing_folder]`
+  * `git init --initial-branch=main`
+    - NOTE: If you want to name the master/main branch something different, replace 'main' with your preferred name.
+  * `git remote add [remote_shorthand] [remote_https_URL/existing_folder.git]`
+    - NOTE: Associate the new remote repository to your preferred [remote_shorthand]
+  * `git add .`
+    - NOTE: This stage all files in the CWD.
+    - NOTE: This is NOT recursive. If you have subdirs, ensure you replace the '.' with '-A'
+  * `git commit -m "Initial commit"`
+    - NOTE: This commits all staged local files to your local repo.
+  * `git push -u [remote_shorthand] [main_branch_name_from_the_second_command_in_this_section]`
+
+<br>
+
+4. To add an existing branch from your local repo, to a remote repo:
   * `git push [remote_shorthand] [local_branch_name]`
     - i.e.  `git push origin Development`
 
 <br>
 
-3. To delete a remote branch that you no longer wish to have exist in a remote repository:
+5. To delete a remote branch that you no longer wish to have exist in a remote repository:
   * `git push [remote_shorthand] --delete [remote_branch_name]`
     - i.e.  `git push origin --delete Testing`
 
 <br>
 
-4. TBC...
+6. TBC...
 
 <br>
 
