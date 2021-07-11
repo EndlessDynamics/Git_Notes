@@ -113,10 +113,6 @@
   * `git add [directory/filename]`
   * `git add .`
     - NOTE: This adds all files(not currently being tracked) in the CWD to the staging area.
-    - NOTE: This does not include sub-directories.
-  * `git add -A`
-    - NOTE: This recursively adds all files(not dirs) in the CWD and below to the staging area.
-    - NOTE: This does not include empty sub-directories. Only if files exist in a sub-dir will a sub-dir be included in the staging. However, it's *files* that are the focus of the tracking, **not** the sub-dir itself.
 
 <br>
 
