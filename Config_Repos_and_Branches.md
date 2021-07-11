@@ -200,56 +200,28 @@
 
 <br>
 
-2. To push an existing Git repository:
-  - NOTE: This is useful if you have already started on a project on your local workstation and are wanting to add it to GitHub/GitLab where it has never existed before.
-  * `cd  [/full/path/to/existing_repo]`
-  * `git remote rename [remote_shorthand] [old_remote_shorthand]`
-  * `git remote add [remote_shorthand] [remote_https_URL/project.git]`
-    - NOTE: Associate the new remote repository to your preferred [remote_shorthand]
-  * `git push -u [remote_shorthand] --all`
-    - NOTE: Push everything to your [remote_shorthand]
-  * `git push -u [remote_shorthand] --tags`
-    - NOTE: This ensures all tags get migrated(copied) as well.
-
-<br>
-
-3. To push an existing folder (that does NOT contain a Git repository yet) to a remote repo in which the Project has NOT been created yet:
-  * `cd  [/full/path/to/existing_folder]`
-  * `git init --initial-branch=main`
-    - NOTE: If you want to name the master/main branch something different, replace 'main' with your preferred name.
-  * `git remote add [remote_shorthand] [remote_https_URL/existing_folder.git]`
-    - NOTE: Associate the new remote repository to your preferred [remote_shorthand]
-  * `git add .`
-    - NOTE: This stage all files in the CWD.
-    - NOTE: This is NOT recursive. If you have subdirs, ensure you replace the '.' with '-A'
-  * `git commit -m "Initial commit"`
-    - NOTE: This commits all staged local files to your local repo.
-  * `git push -u [remote_shorthand] [main_branch_name_from_the_second_command_in_this_section]`
-
-<br>
-
-4. To add an existing branch from your local repo, to a remote repo:
+2. To add an existing branch from your local repo, to a remote repo:
   * `git push [remote_shorthand] [local_branch_name]`
     - i.e.  `git push origin Development`
 
 <br>
 
-5. To delete a remote branch that you no longer wish to have exist in a remote repository:
+3. To delete a remote branch that you no longer wish to have exist in a remote repository:
   * `git push [remote_shorthand] --delete [remote_branch_name]`
     - i.e.  `git push origin --delete Testing`
 
 <br>
 
-6. TBC...
+4. TBC...
 
 <br>
 
 ## Git Repositories (Remote Repository Management)
 
-1. To create an empty Git repository:
+1. To create a new, empty Git repository and add it to a remote repo such as GitHub or GitLab:
   * **STEP-1:**  `git init`
-    - NOTE: Initialize the CWD as a Git repo.
-    - NOTE: See '(Local Repository Management)' above for more details.
+    - NOTE: Initialize the CWD with a Git repository.
+    - NOTE: See notes on '(Local Repository Management)' above for additional details.
 
 <br>
 
@@ -284,6 +256,50 @@
   * **STEP-5 (*optional*):**  `git push [remote_shorthand] --all`
     - NOTE: After STEP-4, if you create additional branches such as *Development* and *Testing*, and have commited their contents to your local repo, this pushes **all** of the branches that exist in your local repo to the remote repo.
 
+<br><br>
+
+2. To push an existing Git repository:
+  **NOTE:** _This is useful if you have already started on a project on your local workstation and are wanting to add it to a remote server such as GitHub/GitLab for the first time where the project has never existed before._
+
+  * **Before continuing, ensure the project/repo has no outstanding staged files requiring a commit.**
+  * `cd  [/full/path/to/existing_local_repo]`
+  * [OPTIONAL - Renaming a local branch before officially pushing to remote repo]
+    - `git checkout [branch_to_rename]`
+    - `git branch -m [new_branch_name]`
+      - **NOTE:** _To simplify things, repeat this action for ALL your branches prior to pushing your project to a remote site._
+  * Decide on the name you want to use to reference your remote repo(i.e. remote_shorthand). Example: origin, GitHub, or GitLab.
+  * Now create a *non-initialized* project on your remote repo. I'll use GitHub for this example walk-through:
+    - Login to your GitHub account; navigate to your repositories page.
+    - Click 'New' to create a new repository.
+    - Give it a name and optionally provide it a project description.
+    - Change the repo type from the default 'Public' selection, to 'Private'.
+    - Click 'Create a new Repository'.
+    - Copy the SSH URL(*not HTTPS*) that is presented on your screen.
+    - Now leave GitHub and go back to your GitBash window.
+  * `git remote add [remote_shorthand] [remote_ssh_URL/project.git]`
+    - NOTE: This associates the new remote repository to your preferred [remote_shorthand]
+    - NOTE: [remote_ssh_URL/project.git] must be written in the following syntax:
+      - git@github.com:[GitHub_Username]/[ProjectName].git
+  * `git push -u [remote_shorthand] --all`
+    - NOTE: Push everything to your [remote_shorthand]
+  * `git push -u [remote_shorthand] --tags`
+    - NOTE: This ensures any tags you have assigned get copied over as well.
+
 <br>
 
-2. TBC...
+3. To push an existing folder and its contents (that does NOT contain a Git repository yet) to a remote repo in which the Project HAS been created:
+  * **NOTE:** _This action is currently being developed!_
+  * `cd  [/full/path/to/existing_folder]`
+  * `git init --initial-branch=main`
+    - NOTE: Ensure the value of '--initial-branch' is the same branch name as your remote repo branch, replace 'main' with the remote name.
+  * `git remote add [remote_shorthand] [remote_https_URL/existing_project.git]`
+    - NOTE: Associate the new remote repository to your preferred [remote_shorthand]
+  * `git add .`
+    - NOTE: This stages the folder and its files in the CWD.
+  * `git commit -m "Initial commit"`
+    - NOTE: This commits all staged local files to your local repo.
+  * `git push -u [remote_shorthand] [value_of_--initial-branch]`
+
+<br>
+
+4. TBC...
