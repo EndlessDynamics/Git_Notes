@@ -14,6 +14,7 @@
 
 ## Syntax used in Markdown files (filename.md)
 
+* An execellent reference page for [Markdown language](https://www.markdownguide.org/basic-syntax/).
 * Use 1-6 hash symbols (`#` - `######`) at the start of a line to signify section headers.
   * This is useful for creating **Subjects** or **Sections** in .md files.
   * The amount of symbols dictate the header size; with # marking the largest header and ###### marking the smallest header.
@@ -63,9 +64,9 @@
     - NOTE: Use the `--system` flag to specify the author's email to be used for all repositories of all users on the system.
     - NOTE: Use the `--global` flag to specify the author's email to be used for all repositories of the logged in user.
     - NOTE: Use the `--local` flag (this is the implied default behavior) to specify the author's email to be used in the current repository.
-      - EXAMPLE:  git config --system user.email "[example@example.com]"
-      - EXAMPLE:  git config --global user.email "[example@example.com]"
-      - EXAMPLE:  git config --local user.email "[example@example.com]"
+      - EXAMPLE:  `git config --system user.email "[example@example.com]"`
+      - EXAMPLE:  `git config --global user.email "[example@example.com]"`
+      - EXAMPLE:  `git config --local user.email "[example@example.com]"`
     - NOTE: The `--system` flag will configure a git config file at `/etc/gitconfig` in which all of the System's users and their repos will inherit from.
       - **Can be over-ridden by a user's `~/.gitconfig` file _**or**_ an individual repo's `.git/config` file. Respectively: `git config --global user.email` and `git config --local user.email` commands.**
     - NOTE: The `--global` flag will configure a git config file at `~/.gitconfig` for the currently logged in user only, in which all of the user's repos will inherit from.
@@ -152,6 +153,7 @@
       - commit ID (hash),
       - Author,
       - Date of commit (DoW MMM DD HH:MM:SS YYYY Timezone_offset_from_GMT),
+        - EXAMPLE: Wednesday Jan 01 15:00:00 2021 -6:00
       - Commit message. 
   * `git log --graph`
     - NOTE: Uses command-line "art" to aid visually in assessing the commit history. 
