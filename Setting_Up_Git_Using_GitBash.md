@@ -4,7 +4,7 @@
 
 
 ## Windows 10 PC
-The below steps assumed you have installed [GitBash](https://gitforwindows.org) on a Windows workstation.
+The below steps assumed you have installed [GitBash](https://gitforwindows.org) on a Windows workstation, and that you are to use GitBash to execute all commands unless explicitly informed otherwise.
 
 **NOTE:** _The GitBash installer also includes 'Git GUI' as part of the package however, I have not used it yet._
 *The Atlassian has an [excellent guide](https://www.atlassian.com/git/tutorials/git-bash) for walking you through the installation of GitBash for Windows.*
@@ -49,7 +49,7 @@ git config user.email "[Email_to_be_associated_with_git_changes]"
   - The `-C` arg stands for comment, and allows you to associate the key with a specific email. Such as the email associated with GitHub/GitLab.
 
 You'll be prompted for 2 things:
-1. The Absolute path in which you will save the priv/pub keys (*include in the path the desired name of your keys*),
+1. The Absolute Path in which you will save the priv/pub keys (*include in the path the desired name of your keys*),
 2. A passphrase required to be entered when the key is *initially* used or when the PC is shutdown/rebooted.
 
 ```
@@ -67,24 +67,37 @@ The key's randomart image is:
 some randomart image
 ...
 ```
+
 <br>
 <br>
 
 Now...
 <br>
-! Ensure the ssh-agent is running on your workstation.
-<br>**NOTE:** _This will manually start the ssh-agent. To set it to start at every boot, scroll to the bottom of Step 3_
+! Evaluate if the ssh-agent is running on your workstation.
 
-`eval "$(ssh-agent -s)"`
+`Get-Service -Name ssh-agent` [MUST use Windows Powershell Running as Admin *NOT* GitBash]
 
-<br><br>
+`eval "$(ssh-agent -s)"` [Linux]
+
+<br>
+
 ! Define the full path to your new SSH private key using Window's ssh-agent.
 <br>**NOTE:** _This is important if you saved your SSH keys in a non-default location_
 
-`ssh-add ~/path/to/my_priv_key`
+`ssh-add 'C:\Users\[Username]\path\to\my_priv_key` [Windows Powershell *NOT* GitBash]
 
-<br><br>
+*or you can use Git Bash*
+
+`ssh-add /c/Users/[Username]/path/to/my_priv_key` [Windows GitBash]
+
+`ssh-add ~/path/to/my_priv_key` [Linux]
+
+<br>
+
 ! By default, Windows does not start the ssh daemon. To configure the behavior as such, perform the following in powershell with elevated(*admin*) priv.
+
+**NOTE:** _You MUST use Windows Powershell Running as Admin *NOT* GitBash_
+
 ```
 ## To set the sshd service to be started automatically at boot-time.
 Get-Service -Name ssh-agent | Set-Service -StartupType Automatic
@@ -92,7 +105,7 @@ Get-Service -Name ssh-agent | Set-Service -StartupType Automatic
 ## Now start the sshd service.
 Start-Service sshd
 ```
-**NOTE:** _If 'Start-Service sshd' fails to execute, try 'Start-Service ssh-agent'._
+**NOTE:** _If 'Start-Service sshd' presents an error, try 'Start-Service ssh-agent'._
 <br>
 <br>
 <br>
